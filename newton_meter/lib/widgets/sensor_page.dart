@@ -26,7 +26,16 @@ class _SensorTestPageState extends State<SensorTestPage> {
     super.initState();
     userAccelSubscription =
         userAccelerometerEventStream().listen((UserAccelerometerEvent event) {
-      print(event);
+
+        // https://dart.dev/language/patterns
+        if(lastTime case DateTime last) {
+          var dt = event.timestamp.difference(last).inMicroseconds * 0.000001;
+          x += 0.5*event.x*event.x*dt;
+          y += 0.5*event.y*event.y*dt;
+          z += 0.5*event.z*event.z*dt;
+
+          print(x);
+        }
     });
   }
 
