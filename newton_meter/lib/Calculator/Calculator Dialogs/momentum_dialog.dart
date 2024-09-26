@@ -15,7 +15,15 @@ class MomentumDialog extends StatefulWidget {
 }
 
 class _MomentumDialogState extends State<MomentumDialog> {
-  Vector3 velocity = new Vector3.zero();
+  Vector3 velocity = Vector3.zero();
+  Vector3 momentum = Vector3.zero();
+  double mass = 0;
+
+  ButtonStyle calcStyle = ElevatedButton.styleFrom( textStyle: const TextStyle(fontSize: 20),  backgroundColor: const Color.fromARGB(255, 24, 119, 63), foregroundColor: Color.fromARGB(255, 0, 0, 0));
+
+  void _calculateMomentum() {
+    momentum = velocity * mass;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +40,12 @@ class _MomentumDialogState extends State<MomentumDialog> {
                   velocity.x = double.parse(value);
                 });
               }
+            ),
+
+            ElevatedButton(
+              onPressed: _calculateMomentum,
+              style: calcStyle,
+              child: const Text('Calculate'),
             ),
           ]
         )

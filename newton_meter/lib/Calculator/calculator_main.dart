@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:newton_meter/Calculator/Calculator%20Dialogs/momentum_dialog.dart';
 
 class CalculatorMain extends StatefulWidget {
   const CalculatorMain({super.key});
@@ -16,7 +17,8 @@ class _CalculatorMainState extends State<CalculatorMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Calculator')
+        title: const Text('Calculator'),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -27,7 +29,14 @@ class _CalculatorMainState extends State<CalculatorMain> {
             child: const Text('Gravitational Force (Vector)'),
           ),
           ElevatedButton(
-            onPressed: null,
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return const MomentumDialog();
+                }
+              );
+            },
             style: style,
             child: const Text('Momentum (Vector)'),
           ),
