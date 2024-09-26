@@ -11,14 +11,14 @@ class CalculatorMain extends StatefulWidget {
 
 class _CalculatorMainState extends State<CalculatorMain> {
 
-  final ButtonStyle style = ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
 
   @override
   Widget build(BuildContext context) {
+    ButtonStyle style = ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20), backgroundColor: Theme.of(context).colorScheme.inversePrimary);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Calculator'),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
