@@ -27,18 +27,18 @@ class Vec3Time {
 List<Vec3Time> integrate(List<Vec3Time> vs) {
   List<Vec3Time> integrated = List.of(vs);
 
-  for(int i = 1; i < vs.length; ++i) {
-    var dt = vs[i].seconds - vs[i-1].seconds;
-    integrated[i].x = integrated[i-1].x + integrated[i].x * dt;
-    integrated[i].y = integrated[i-1].y + integrated[i].y * dt;
-    integrated[i].z = integrated[i-1].z + integrated[i].z * dt;
+  for (int i = 1; i < vs.length; ++i) {
+    var dt = vs[i].seconds - vs[i - 1].seconds;
+    integrated[i].x = integrated[i - 1].x + integrated[i].x * dt;
+    integrated[i].y = integrated[i - 1].y + integrated[i].y * dt;
+    integrated[i].z = integrated[i - 1].z + integrated[i].z * dt;
   }
 
   return integrated;
 }
 
 List<double> scalarize(List<Vec3Time> vs) {
-  return vs.map((e) => sqrt(e.x*e.x + e.y*e.y + e.z*e.z)).toList();
+  return vs.map((e) => sqrt(e.x * e.x + e.y * e.y + e.z * e.z)).toList();
 }
 
 class _SensorTestPageState extends State<SensorTestPage> {
@@ -48,7 +48,9 @@ class _SensorTestPageState extends State<SensorTestPage> {
   // DateTime? lastTime;
   List<Vec3Time> acceleration = [];
 
-  double px=0,py=0,pz=0;
+  double px = 0, py = 0, pz = 0;
+
+  double maxa = 0;
 
   // bool shouldStart = false;
   bool running = false;
@@ -66,29 +68,38 @@ class _SensorTestPageState extends State<SensorTestPage> {
   }
 
   void finishRecording() {
-      var velocity = integrate(acceleration);
-      var position = integrate(velocity);
+    var velocity = integrate(acceleration);
+    var position = integrate(velocity);
 
-      var s_velocity = scalarize(velocity);
-      var s_position = scalarize(position);
+    var s_acceleration = scalarize(acceleration);
+    var s_velocity = scalarize(velocity);
+    var s_position = scalarize(position);
 
-      print("Stopping!");
-      if(s_position.isEmpty) {
-        print("s_position was empty!");
-        print("lens ${position.length}, ${velocity.length}, ${acceleration.length}");
-      } else {
-        print(s_position.last);
-
-        px = position.last.x;
-        py = position.last.y;
-        pz = position.last.z;
+    maxa = s_acceleration[0];
+    for (double a in s_acceleration) {
+      if (a > maxa) {
+        maxa = a;
       }
+    }
 
-      acceleration.clear();
-      velocity.clear();
-      position.clear();
-      s_velocity.clear();
-      s_position.clear();
+    print("Stopping!");
+    if (s_position.isEmpty) {
+      print("s_position was empty!");
+      print(
+          "lens ${position.length}, ${velocity.length}, ${acceleration.length}");
+    } else {
+      print(s_position.last);
+
+      px = position.last.x;
+      py = position.last.y;
+      pz = position.last.z;
+    }
+
+    acceleration.clear();
+    velocity.clear();
+    position.clear();
+    s_velocity.clear();
+    s_position.clear();
   }
 
   @override
@@ -100,9 +111,10 @@ class _SensorTestPageState extends State<SensorTestPage> {
             onPressed: () {
               setState(record);
             }),
-            Text(px.toStringAsPrecision(5)),
-            Text(py.toStringAsPrecision(5)),
-            Text(pz.toStringAsPrecision(5)),
+        Text(px.toStringAsPrecision(5)),
+        Text(py.toStringAsPrecision(5)),
+        Text(pz.toStringAsPrecision(5)),
+        Text("Max Accel: ${maxa.toStringAsPrecision(3)}"),
       ]),
     );
   }
