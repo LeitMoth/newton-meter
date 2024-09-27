@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:newton_meter/Calculator/Calculator%20Dialogs/gravitational_force_dialog.dart';
 import 'package:newton_meter/Calculator/Calculator%20Dialogs/momentum_dialog.dart';
 
 class CalculatorMain extends StatefulWidget {
@@ -24,7 +25,14 @@ class _CalculatorMainState extends State<CalculatorMain> {
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         children: <Widget> [
           ElevatedButton(
-            onPressed: null,
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return const GravitationalForceDialog();
+                }
+              );
+            },
             style: style,
             child: const Text('Gravitational Force (Vector)'),
           ),
