@@ -30,4 +30,49 @@ void main() {
     
     expect(find.text('Force = [1.0,0.0,0.0]'), findsOneWidget);
   });
+
+  testWidgets('grav force dialog gives the right answer', (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home: CalculatorMain()));
+
+    await tester.tap(find.byKey(const Key('gfv')));
+    await tester.pump();
+    await tester.enterText(find.byKey(const Key('p2x')), '1');
+    await tester.pump();
+    await tester.enterText(find.byKey(const Key('m1')), '2');
+    await tester.pump();
+    await tester.enterText(find.byKey(const Key('m2')), '1');
+    await tester.pump();
+    await tester.tap(find.byKey(const Key('calc')));
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    await tester.pump();
+    
+
+    //expect(find.text('Gravitational Force = [0.0,0.0,0.0]'), findsOneWidget);
+    expect(find.text('Gravitational Force = [-1.340000055360946e-10,-0.0,-0.0]'),findsOneWidget);
+  });
 }
