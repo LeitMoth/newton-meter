@@ -30,7 +30,7 @@ void main() {
     expect(find.text('1'), findsOneWidget);
   });
   testWidgets('data is displayed properly', (WidgetTester tester) async{
-    await tester.pumpWidget((const textData()));
+    await tester.pumpWidget((const TextData()));
 
     expect(find.text('Average Velocity = 1.00'), findsOne);
     expect(find.text('Net Force = 2.00'), findsOne);
@@ -42,7 +42,7 @@ void main() {
   });
 
   testWidgets('data starts to record', (WidgetTester tester) async{
-    await tester.pumpWidget((const textData()));
+    await tester.pumpWidget((const TextData()));
 
     await tester.tap(find.byIcon(Icons.start));
 

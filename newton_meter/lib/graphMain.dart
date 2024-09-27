@@ -38,7 +38,7 @@ class _MyGraphPageState extends State<MyGraphPage> {
   List<Vec3Time> acceleration = [];
   bool recording = false;
   DateTime? recordStart;
-  NewtonResults? recordResults;
+  NewtonResults recordResults = NewtonResults.build([Vec3Time(x: 0, y: 0, z: 0, seconds: 0)]);
 
   void record() {
     if (!recording) {
@@ -88,11 +88,6 @@ class _MyGraphPageState extends State<MyGraphPage> {
 
   @override
   Widget build(BuildContext context) {
-    List<DataPoint> dataPoints = [];
-    if (recordResults case NewtonResults res) {
-      dataPoints = toDataPoints(res.magVelocity);
-    }
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -101,8 +96,8 @@ class _MyGraphPageState extends State<MyGraphPage> {
       body: Center(
         child: Column(
           children: [
-            LineChartWidget(dataPoints),
-            const textData(),
+            LineChartWidget(toDataPoints(recordResults.magVelocity)),
+            ResultsDisplay(results: recordResults),
           ],
         ),
       ),
