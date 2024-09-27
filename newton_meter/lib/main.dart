@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Newton-Meter',
       theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.green)),
-      home: const CalculatorMain(), 
+      home: const CalculatorMain(),
       );
     
   }
