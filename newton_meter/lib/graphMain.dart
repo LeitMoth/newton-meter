@@ -55,7 +55,7 @@ class MyGraphPage extends StatefulWidget {
       body: Center(
         child: Column(
           children: [
-           const LineChartWidget(<DataPoint>[]),
+          LineChartWidget(dataPoints),
            const textData(),
           ],
         ),

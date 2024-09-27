@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 
 
+
 class DataPoint {
   final double x;
   final double y; 
@@ -26,11 +27,11 @@ class LineChartWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 2,
-    child: LineChart(LineChartData(lineBarsData: [
-      LineChartBarData(
-      spots: data.map((data) => FlSpot(data.x, data.y)).toList(),
-      isCurved: false,
-      dotData: FlDotData(show: true))
+      child: LineChart(LineChartData(lineBarsData: [
+        LineChartBarData(
+          spots: data.map((data) => FlSpot(data.x, data.y)).toList(),
+          isCurved: false,
+          dotData: const FlDotData(show: true))
       ])),
     );
   }
