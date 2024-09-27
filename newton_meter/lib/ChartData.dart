@@ -11,7 +11,7 @@ class DataPoint {
 }
 
 List<DataPoint> get dataPoints{
-  final data = <double>[2,3,6,11,3,6,4];
+  final data = <double>[];
   return data
     .mapIndexed(
       ((index, element) => DataPoint(x: index.toDouble(), y: element)))
