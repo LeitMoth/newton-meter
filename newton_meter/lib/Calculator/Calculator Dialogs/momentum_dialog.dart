@@ -90,7 +90,7 @@ class _MomentumDialogState extends State<MomentumDialog> {
         actions: <Widget> [
           ElevatedButton(
             style: cancelStyle,
-            key: Key('canc'),
+            key: const Key('canc'),
             child: const Text('Close'),
             onPressed: () {
               setState(() {

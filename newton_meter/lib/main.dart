@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:newton_meter/graphMain.dart';
 import 'package:newton_meter/Calculator/calculator_main.dart';
-import 'package:newton_meter/widgets/sensor_page.dart';
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyGraph());
 }
 
 class MyApp extends StatelessWidget {
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // return const MyGraph();
     return MaterialApp(
       title: 'Newton-Meter',
       theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.green)),

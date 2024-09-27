@@ -6,7 +6,7 @@ import 'package:collection/collection.dart';
 class DataPoint {
   final double x;
   final double y; 
-  DataPoint({required this.x, required this.y})
+  DataPoint({required this.x, required this.y});
 }
 
 List<DataPoint> get dataPoints{
@@ -20,7 +20,7 @@ List<DataPoint> get dataPoints{
 class LineChartWidget extends StatelessWidget {
   final List<DataPoint> data;
 
-  const LineChartWidget(this.data, {Key? key}) : super(key: key);
+  const LineChartWidget(this.data, {super.key});
 
   @override
   Widget build(BuildContext context) {
