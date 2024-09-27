@@ -60,9 +60,7 @@ class _textDataState extends State<textData> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-      body: Card(
+        return Card(
           child: Column(
             children: [
             TextField(
@@ -85,13 +83,10 @@ class _textDataState extends State<textData> {
               'Vector 4 = $vector4'),
             ]
           )
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: _StartRecording,
-          tooltip: 'Start',
-          child: const Icon(Icons.start)),
-      )
-    );
+        );
+        
+
+    
   }
 }
 

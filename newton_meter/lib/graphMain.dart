@@ -6,6 +6,8 @@ import 'package:collection/collection.dart';
 import 'package:newton_meter/ChartData.dart';
 import 'package:newton_meter/dataDisplay.dart';
 
+
+
 class MyGraph extends StatelessWidget {
   const MyGraph({super.key});
 
@@ -58,6 +60,10 @@ class MyGraphPage extends StatefulWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: null,
+          tooltip: 'Start',
+          child: const Icon(Icons.start)),
 
     ); // This trailing comma makes auto-formatting nicer for build methods.
     

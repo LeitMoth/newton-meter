@@ -17,10 +17,10 @@ List<DataPoint> get dataPoints{
     .toList();
 }
 
-class LineChartWidget extends StatelessWidget {
+class LineChartWidget1 extends StatelessWidget {
   final List<DataPoint> data;
 
-  const LineChartWidget(this.data, {Key? key}) : super(key: key);
+  const LineChartWidget1(this.data, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
