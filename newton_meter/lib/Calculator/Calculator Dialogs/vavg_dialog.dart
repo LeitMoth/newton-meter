@@ -1,28 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math.dart';
 
-class PosUpdateDialog extends StatefulWidget {
-  const PosUpdateDialog({
+typedef MomentumCallback = Function(Vector3 momentumFinal);
+
+class AvgVeloDialog extends StatefulWidget {
+  const AvgVeloDialog({
     super.key,
   });
 
+  //final MomentumCallback onCalculationsComplete;
+
   @override
-  State<PosUpdateDialog> createState() => _PosUpdateDialogState();
+  State<AvgVeloDialog> createState() => _AvgVeloDialogState();
 }
 
-class _PosUpdateDialogState extends State<PosUpdateDialog> {
-  Vector3 vector = Vector3.zero();
-  double magnitude = 0;
-
-  Vector3 rf = Vector3.zero();
-  Vector3 ri = Vector3.zero();
+class _AvgVeloDialogState extends State<AvgVeloDialog> {
   Vector3 vavg = Vector3.zero();
+  Vector3 dr = Vector3.zero();
+  Vector3 ri = Vector3.zero();
+  Vector3 rf = Vector3.zero();
   double dt = 0;
 
 
   void _calculateMomentum() {
     setState(() {
-      rf = ri + (vavg*dt);
+      dr = rf - ri;
+      vavg = dr / dt;
     });
   }
 
@@ -34,7 +37,7 @@ class _PosUpdateDialogState extends State<PosUpdateDialog> {
     backgroundColor: Theme.of(context).colorScheme.tertiaryFixed);
     return AlertDialog(
       scrollable: true,
-      title: const Text('Position Update Formula'),
+      title: const Text('Momentum in Vector Form'),
       content:
         Column(
           children: <Widget>[
@@ -65,34 +68,34 @@ class _PosUpdateDialogState extends State<PosUpdateDialog> {
                 });
               }
             ),
-            TextField( // Velocity x Input Field
+            TextField( // rf X Input Field
               keyboardType: TextInputType.number,
-              decoration: const InputDecoration(labelText: 'Velo avg x ='),
+              decoration: const InputDecoration(labelText: 'rf x ='),
               onChanged: (value) {
                 setState(() {
-                  vavg.x = double.parse(value);
+                  rf.x = double.parse(value);
                 });
               }
             ),
-            TextField( // Velocity Y Input Field
+            TextField( // rf Y Input Field
               keyboardType: TextInputType.number,
-              decoration: const InputDecoration(labelText: 'Velo avg Y ='),
+              decoration: const InputDecoration(labelText: 'rf y ='),
               onChanged: (value) {
                 setState(() {
-                  vavg.y = double.parse(value);
+                  rf.y = double.parse(value);
                 });
               }
             ),
-            TextField( // Velocity z Input
+            TextField( // rf z Input
               keyboardType: TextInputType.number,
-              decoration: const InputDecoration(labelText: 'Velo avg Z ='),
+              decoration: const InputDecoration(labelText: 'rf z ='),
               onChanged: (value) {
                 setState(() {
-                  vavg.z = double.parse(value);
+                  rf.z = double.parse(value);
                 });
               }
             ),
-            TextField( // Time Input
+            TextField( // dt Input Field
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(labelText: 'Time ='),
               onChanged: (value) {
@@ -106,7 +109,7 @@ class _PosUpdateDialogState extends State<PosUpdateDialog> {
               style: calcStyle,
               child: const Text('Calculate'),
             ),
-            Text('Final Position = $rf'),
+            Text('Average Velocity = $vavg'),
           ]
         ),
 

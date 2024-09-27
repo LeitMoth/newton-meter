@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math.dart';
 
-class PosUpdateDialog extends StatefulWidget {
-  const PosUpdateDialog({
+class PosUpdate2Dialog extends StatefulWidget {
+  const PosUpdate2Dialog({
     super.key,
   });
 
   @override
-  State<PosUpdateDialog> createState() => _PosUpdateDialogState();
+  State<PosUpdate2Dialog> createState() => _PosUpdate2DialogState();
 }
 
-class _PosUpdateDialogState extends State<PosUpdateDialog> {
-  Vector3 vector = Vector3.zero();
-  double magnitude = 0;
-
+class _PosUpdate2DialogState extends State<PosUpdate2Dialog> {
   Vector3 rf = Vector3.zero();
   Vector3 ri = Vector3.zero();
-  Vector3 vavg = Vector3.zero();
+  Vector3 vi = Vector3.zero();
+  Vector3 f = Vector3.zero();
+  double m = 0;
   double dt = 0;
+  Vector3 accel = Vector3.zero();
 
 
   void _calculateMomentum() {
     setState(() {
-      rf = ri + (vavg*dt);
+      accel = Vector3(f.x/m, f.y/m, f.z/m);
+      rf = accel/2*(dt*dt) + vi*dt + ri;
     });
   }
 
@@ -34,10 +35,37 @@ class _PosUpdateDialogState extends State<PosUpdateDialog> {
     backgroundColor: Theme.of(context).colorScheme.tertiaryFixed);
     return AlertDialog(
       scrollable: true,
-      title: const Text('Position Update Formula'),
+      title: const Text('Position Update with Constant Force'),
       content:
         Column(
           children: <Widget>[
+            TextField( // Force X Input Field
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(labelText: 'Fnet x ='),
+              onChanged: (value) {
+                setState(() {
+                  f.x = double.parse(value);
+                });
+              }
+            ),
+            TextField( // Force Y Input Field
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(labelText: 'Fnet y ='),
+              onChanged: (value) {
+                setState(() {
+                  f.y = double.parse(value);
+                });
+              }
+            ),
+            TextField( // Force z Input
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(labelText: 'Fnet z ='),
+              onChanged: (value) {
+                setState(() {
+                  f.z = double.parse(value);
+                });
+              }
+            ),
             TextField( // ri X Input Field
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(labelText: 'ri x ='),
@@ -67,28 +95,28 @@ class _PosUpdateDialogState extends State<PosUpdateDialog> {
             ),
             TextField( // Velocity x Input Field
               keyboardType: TextInputType.number,
-              decoration: const InputDecoration(labelText: 'Velo avg x ='),
+              decoration: const InputDecoration(labelText: 'vi x ='),
               onChanged: (value) {
                 setState(() {
-                  vavg.x = double.parse(value);
+                  vi.x = double.parse(value);
                 });
               }
             ),
             TextField( // Velocity Y Input Field
               keyboardType: TextInputType.number,
-              decoration: const InputDecoration(labelText: 'Velo avg Y ='),
+              decoration: const InputDecoration(labelText: 'vi y ='),
               onChanged: (value) {
                 setState(() {
-                  vavg.y = double.parse(value);
+                  vi.y = double.parse(value);
                 });
               }
             ),
             TextField( // Velocity z Input
               keyboardType: TextInputType.number,
-              decoration: const InputDecoration(labelText: 'Velo avg Z ='),
+              decoration: const InputDecoration(labelText: 'vi z ='),
               onChanged: (value) {
                 setState(() {
-                  vavg.z = double.parse(value);
+                  vi.z = double.parse(value);
                 });
               }
             ),
@@ -98,6 +126,15 @@ class _PosUpdateDialogState extends State<PosUpdateDialog> {
               onChanged: (value) {
                 setState(() {
                   dt = double.parse(value);
+                });
+              }
+            ),
+            TextField( // Mass Input
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(labelText: 'Mass ='),
+              onChanged: (value) {
+                setState(() {
+                  m = double.parse(value);
                 });
               }
             ),
