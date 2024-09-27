@@ -10,11 +10,6 @@ class SensorTestPage extends StatefulWidget {
   State<SensorTestPage> createState() => _SensorTestPageState();
 }
 
-class Vec3Dt {
-  Vec3Dt({required this.x, required this.y, required this.z, required this.dt});
-  double x = 0, y = 0, z = 0, dt = 0;
-}
-
 class Vec3Time {
   Vec3Time(
       {required this.x,
@@ -24,6 +19,12 @@ class Vec3Time {
   double x = 0, y = 0, z = 0, seconds = 0;
 }
 
+/*
+For the first Vec3Time, its time component is discarded,
+and its values are used as the initial condition.
+For our purposes, we always want the first Vec3Time
+to be the zero vector
+*/
 List<Vec3Time> integrate(List<Vec3Time> vs) {
   List<Vec3Time> integrated = List.of(vs);
 
@@ -126,6 +127,7 @@ class _SensorTestPageState extends State<SensorTestPage> {
         userAccelerometerEventStream().listen((UserAccelerometerEvent event) {
       if (running && recordStart == null) {
         recordStart = event.timestamp;
+        acceleration = [Vec3Time(x: 0, y: 0, z: 0, seconds: 0)];
         print("Resetting start time!");
       }
 
@@ -135,19 +137,7 @@ class _SensorTestPageState extends State<SensorTestPage> {
         acceleration.add(
             Vec3Time(x: event.x, y: event.y, z: event.z, seconds: elapsed));
         // print("Added $elapsed");
-        // data.add(Vec3Dt(x: event.x, y: event.y, z: event.z, dt: dt));
-        // lastTime = event.timestamp;
       }
-
-      // https://dart.dev/language/patterns
-      // if (lastTime case DateTime last) {
-      //   var dt = event.timestamp.difference(last).inMicroseconds * 0.000001;
-      //   x += 0.5 * event.x * event.x * dt;
-      //   y += 0.5 * event.y * event.y * dt;
-      //   z += 0.5 * event.z * event.z * dt;
-
-      // print(x);
-      // }
     });
   }
 
