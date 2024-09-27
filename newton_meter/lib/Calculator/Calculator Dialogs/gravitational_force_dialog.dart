@@ -50,6 +50,7 @@ class _GravitationalForceDialogState extends State<GravitationalForceDialog> {
           children: <Widget>[
             TextField( // Pos 1 x Input Field
               keyboardType: TextInputType.number,
+              key: const Key('p1x'),
               decoration: const InputDecoration(labelText: 'pos1x ='),
               onChanged: (value) {
                 setState(() {
@@ -59,6 +60,7 @@ class _GravitationalForceDialogState extends State<GravitationalForceDialog> {
             ),
             TextField( // Pos 1 y Input Field
               keyboardType: TextInputType.number,
+              key: const Key('p1y'),
               decoration: const InputDecoration(labelText: 'pos1y ='),
               onChanged: (value) {
                 setState(() {
@@ -68,6 +70,7 @@ class _GravitationalForceDialogState extends State<GravitationalForceDialog> {
             ),
             TextField( // Pos 1 z Input
               keyboardType: TextInputType.number,
+              key: const Key('p1z'),
               decoration: const InputDecoration(labelText: 'pos1z ='),
               onChanged: (value) {
                 setState(() {
@@ -77,6 +80,7 @@ class _GravitationalForceDialogState extends State<GravitationalForceDialog> {
             ),
             TextField( // Pos 2 x Input Field
               keyboardType: TextInputType.number,
+              key: const Key('p2x'),
               decoration: const InputDecoration(labelText: 'pos2x ='),
               onChanged: (value) {
                 setState(() {
@@ -86,6 +90,7 @@ class _GravitationalForceDialogState extends State<GravitationalForceDialog> {
             ),
             TextField( // pos 2 y Input Field
               keyboardType: TextInputType.number,
+              key: const Key('p2y'),
               decoration: const InputDecoration(labelText: 'pos2y ='),
               onChanged: (value) {
                 setState(() {
@@ -95,6 +100,7 @@ class _GravitationalForceDialogState extends State<GravitationalForceDialog> {
             ),
             TextField( // pos 2 z Input
               keyboardType: TextInputType.number,
+              key: const Key('p2z'),
               decoration: const InputDecoration(labelText: 'pos2z ='),
               onChanged: (value) {
                 setState(() {
@@ -104,6 +110,7 @@ class _GravitationalForceDialogState extends State<GravitationalForceDialog> {
             ),
             TextField( // Mass 1 Input Field
               keyboardType: TextInputType.number,
+              key: const Key('m1'),
               decoration: const InputDecoration(labelText: 'Mass 1 ='),
               onChanged: (value) {
                 setState(() {
@@ -113,6 +120,7 @@ class _GravitationalForceDialogState extends State<GravitationalForceDialog> {
             ),
             TextField( // Mass 2 Input Field
               keyboardType: TextInputType.number,
+              key: const Key('m2'),
               decoration: const InputDecoration(labelText: 'Mass 2 ='),
               onChanged: (value) {
                 setState(() {
@@ -122,16 +130,18 @@ class _GravitationalForceDialogState extends State<GravitationalForceDialog> {
             ),
             ElevatedButton(
               onPressed: _calculateGravForce,
+              key: const Key('calc'),
               style: calcStyle,
               child: const Text('Calculate'),
             ),
-            Text('Gravitational Force = $gravForce'),
+            Text('Gravitational Force = $gravForce', key: const Key('sol')),
           ]
         ),
 
         actions: <Widget> [
           ElevatedButton(
             style: cancelStyle,
+            key: const Key('canc'),
             child: const Text('Close'),
             onPressed: () {
               setState(() {

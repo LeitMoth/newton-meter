@@ -41,6 +41,7 @@ class _PosUpdate2DialogState extends State<PosUpdate2Dialog> {
           children: <Widget>[
             TextField( // Force X Input Field
               keyboardType: TextInputType.number,
+              key: const Key('fnx'),
               decoration: const InputDecoration(labelText: 'Fnet x ='),
               onChanged: (value) {
                 setState(() {
@@ -50,6 +51,7 @@ class _PosUpdate2DialogState extends State<PosUpdate2Dialog> {
             ),
             TextField( // Force Y Input Field
               keyboardType: TextInputType.number,
+              key: const Key('fny'),
               decoration: const InputDecoration(labelText: 'Fnet y ='),
               onChanged: (value) {
                 setState(() {
@@ -59,6 +61,7 @@ class _PosUpdate2DialogState extends State<PosUpdate2Dialog> {
             ),
             TextField( // Force z Input
               keyboardType: TextInputType.number,
+              key: const Key('fnz'),
               decoration: const InputDecoration(labelText: 'Fnet z ='),
               onChanged: (value) {
                 setState(() {
@@ -68,6 +71,7 @@ class _PosUpdate2DialogState extends State<PosUpdate2Dialog> {
             ),
             TextField( // ri X Input Field
               keyboardType: TextInputType.number,
+              key: const Key('rix'),
               decoration: const InputDecoration(labelText: 'ri x ='),
               onChanged: (value) {
                 setState(() {
@@ -77,6 +81,7 @@ class _PosUpdate2DialogState extends State<PosUpdate2Dialog> {
             ),
             TextField( // ri Y Input Field
               keyboardType: TextInputType.number,
+              key: const Key('riy'),
               decoration: const InputDecoration(labelText: 'ri y ='),
               onChanged: (value) {
                 setState(() {
@@ -86,6 +91,7 @@ class _PosUpdate2DialogState extends State<PosUpdate2Dialog> {
             ),
             TextField( // ri z Input
               keyboardType: TextInputType.number,
+              key: const Key('riz'),
               decoration: const InputDecoration(labelText: 'ri z ='),
               onChanged: (value) {
                 setState(() {
@@ -95,6 +101,7 @@ class _PosUpdate2DialogState extends State<PosUpdate2Dialog> {
             ),
             TextField( // Velocity x Input Field
               keyboardType: TextInputType.number,
+              key: const Key('vix'),
               decoration: const InputDecoration(labelText: 'vi x ='),
               onChanged: (value) {
                 setState(() {
@@ -104,6 +111,7 @@ class _PosUpdate2DialogState extends State<PosUpdate2Dialog> {
             ),
             TextField( // Velocity Y Input Field
               keyboardType: TextInputType.number,
+              key: const Key('viy'),
               decoration: const InputDecoration(labelText: 'vi y ='),
               onChanged: (value) {
                 setState(() {
@@ -113,6 +121,7 @@ class _PosUpdate2DialogState extends State<PosUpdate2Dialog> {
             ),
             TextField( // Velocity z Input
               keyboardType: TextInputType.number,
+              key: const Key('viz'),
               decoration: const InputDecoration(labelText: 'vi z ='),
               onChanged: (value) {
                 setState(() {
@@ -122,6 +131,7 @@ class _PosUpdate2DialogState extends State<PosUpdate2Dialog> {
             ),
             TextField( // Time Input
               keyboardType: TextInputType.number,
+              key: const Key('t'),
               decoration: const InputDecoration(labelText: 'Time ='),
               onChanged: (value) {
                 setState(() {
@@ -131,6 +141,7 @@ class _PosUpdate2DialogState extends State<PosUpdate2Dialog> {
             ),
             TextField( // Mass Input
               keyboardType: TextInputType.number,
+              key: const Key('m'),
               decoration: const InputDecoration(labelText: 'Mass ='),
               onChanged: (value) {
                 setState(() {
@@ -141,15 +152,17 @@ class _PosUpdate2DialogState extends State<PosUpdate2Dialog> {
             ElevatedButton(
               onPressed: _calculateMomentum,
               style: calcStyle,
+              key: const Key('calc'),
               child: const Text('Calculate'),
             ),
-            Text('Final Position = $rf'),
+            Text('Final Position = $rf', key: const Key('sol')),
           ]
         ),
 
         actions: <Widget> [
           ElevatedButton(
             style: cancelStyle,
+            key: const Key('canc'),
             child: const Text('Close'),
             onPressed: () {
               setState(() {
