@@ -1,5 +1,12 @@
 
 import 'package:flutter/material.dart';
+import 'package:newton_meter/Calculator/Calculator%20Dialogs/force_dialog.dart';
+import 'package:newton_meter/Calculator/Calculator%20Dialogs/gravitational_force_dialog.dart';
+import 'package:newton_meter/Calculator/Calculator%20Dialogs/magnitude_dialog.dart';
+import 'package:newton_meter/Calculator/Calculator%20Dialogs/momentum_dialog.dart';
+import 'package:newton_meter/Calculator/Calculator%20Dialogs/pos_update_2_dialog.dart';
+import 'package:newton_meter/Calculator/Calculator%20Dialogs/pos_update_dialog.dart';
+import 'package:newton_meter/Calculator/Calculator%20Dialogs/vavg_dialog.dart';
 
 class CalculatorMain extends StatefulWidget {
   const CalculatorMain({super.key});
@@ -10,36 +17,115 @@ class CalculatorMain extends StatefulWidget {
 
 class _CalculatorMainState extends State<CalculatorMain> {
 
-  final ButtonStyle style = ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
 
   @override
   Widget build(BuildContext context) {
+    ButtonStyle style = ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20), backgroundColor: Theme.of(context).colorScheme.inversePrimary);
+    Icon switchIcon = Icon(Icons.switch_access_shortcut, color: Theme.of(context).colorScheme.inversePrimary);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Calculator')
+        title: const Text('Calculator'),
+        titleTextStyle: TextStyle(color: Theme.of(context).colorScheme.inversePrimary, fontSize: 30),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            onPressed: null,
+            icon: switchIcon,
+          )
+        ],
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         children: <Widget> [
           ElevatedButton(
-            onPressed: null,
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return const GravitationalForceDialog();
+                }
+              );
+            },
+            key: const Key('gfv'),
             style: style,
             child: const Text('Gravitational Force (Vector)'),
           ),
           ElevatedButton(
-            onPressed: null,
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return const ForceDialog();
+                }
+              );
+            },
+            style: style,
+            child: const Text('Force (Vector)'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return const MomentumDialog();
+                }
+              );
+            },
+            key: const Key('mv'),
             style: style,
             child: const Text('Momentum (Vector)'),
           ),
           ElevatedButton(
-            onPressed: null,
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return const AvgVeloDialog();
+                }
+              );
+            },
+            key: const Key('avv'),
+            style: style,
+            child: const Text('Average Velocity (Vector)'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return const MagnitudeDialog();
+                }
+              );
+            },
+            key: const Key('mag'),
             style: style,
             child: const Text('Magnitude (Any Vector)'),
           ),
           ElevatedButton(
-            onPressed: null,
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return const PosUpdateDialog();
+                }
+              );
+            },
+            key: const Key('pu1'),
             style: style,
-            child: const Text('Position Update (Vector)'),
+            child: const Text('Position Update (Vector - Using Pos, Time, and avg Velo)'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return const PosUpdate2Dialog();
+                }
+              );
+            },
+            key: const Key('pu2'),
+            style: style,
+            child: const Text('Position Update (Vector - Using Constant Force)'),
           ),
           // Add More Buttons for other formulas
         ]

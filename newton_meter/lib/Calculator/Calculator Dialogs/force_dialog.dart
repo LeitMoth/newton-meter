@@ -3,26 +3,26 @@ import 'package:vector_math/vector_math.dart';
 
 typedef MomentumCallback = Function(Vector3 momentumFinal);
 
-class MomentumDialog extends StatefulWidget {
-  const MomentumDialog({
+class ForceDialog extends StatefulWidget {
+  const ForceDialog({
     super.key,
   });
 
   //final MomentumCallback onCalculationsComplete;
 
   @override
-  State<MomentumDialog> createState() => _MomentumDialogState();
+  State<ForceDialog> createState() => _ForceDialogState();
 }
 
-class _MomentumDialogState extends State<MomentumDialog> {
-  Vector3 velocity = Vector3.zero();
+class _ForceDialogState extends State<ForceDialog> {
+  Vector3 acceleration = Vector3.zero();
   double mass = 0;
-  Vector3 momentum = Vector3.zero();
+  Vector3 force = Vector3.zero();
 
 
   void _calculateMomentum() {
     setState(() {
-      momentum = velocity * mass;
+      force = acceleration * mass;
     });
   }
 
@@ -33,37 +33,37 @@ class _MomentumDialogState extends State<MomentumDialog> {
     ButtonStyle cancelStyle = ElevatedButton.styleFrom( textStyle: TextStyle(fontSize: 20, color: Theme.of(context).colorScheme.secondary),
     backgroundColor: Theme.of(context).colorScheme.tertiaryFixed);
     return AlertDialog(
-      title: const Text('Momentum in Vector Form'),
+      title: const Text('Force in Vector Form'),
       content:
         Column(
           children: <Widget>[
-            TextField( // Velocity X Input Field
+            TextField( // Acceleration X Input Field
+              key: const Key('ax'),
               keyboardType: TextInputType.number,
-              key: const Key('vx'),
-              decoration: const InputDecoration(labelText: 'Vx ='),
+              decoration: const InputDecoration(labelText: 'Accel x ='),
               onChanged: (value) {
                 setState(() {
-                  velocity.x = double.parse(value);
+                  acceleration.x = double.parse(value);
                 });
               }
             ),
-            TextField( // Velocity Y Input Field
+            TextField( // Acceleration Y Input Field
               keyboardType: TextInputType.number,
-              key: const Key('vy'),
-              decoration: const InputDecoration(labelText: 'Vy ='),
+              key: const Key('ay'),
+              decoration: const InputDecoration(labelText: 'Accel y ='),
               onChanged: (value) {
                 setState(() {
-                  velocity.y = double.parse(value);
+                  acceleration.y = double.parse(value);
                 });
               }
             ),
-            TextField( // Velocity z Input
+            TextField( // Acceleration z Input
               keyboardType: TextInputType.number,
-              key: const Key('vz'),
-              decoration: const InputDecoration(labelText: 'Vz ='),
+              key: const Key('az'),
+              decoration: const InputDecoration(labelText: 'Accel z ='),
               onChanged: (value) {
                 setState(() {
-                  velocity.z = double.parse(value);
+                  acceleration.z = double.parse(value);
                 });
               }
             ),
@@ -79,18 +79,18 @@ class _MomentumDialogState extends State<MomentumDialog> {
             ),
             ElevatedButton(
               onPressed: _calculateMomentum,
-              style: calcStyle,
               key: const Key('calc'),
+              style: calcStyle,
               child: const Text('Calculate'),
             ),
-            Text('Momentum = $momentum', key: const Key('sol')),
+            Text('Force = $force', key: const Key('sol')),
           ]
         ),
 
         actions: <Widget> [
           ElevatedButton(
             style: cancelStyle,
-            key: Key('canc'),
+            key: const Key('canc'),
             child: const Text('Close'),
             onPressed: () {
               setState(() {
