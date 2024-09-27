@@ -5,6 +5,7 @@ import 'package:newton_meter/Calculator/Calculator%20Dialogs/magnitude_dialog.da
 import 'package:newton_meter/Calculator/Calculator%20Dialogs/momentum_dialog.dart';
 import 'package:newton_meter/Calculator/Calculator%20Dialogs/pos_update_2_dialog.dart';
 import 'package:newton_meter/Calculator/Calculator%20Dialogs/pos_update_dialog.dart';
+import 'package:newton_meter/Calculator/Calculator%20Dialogs/vavg_dialog.dart';
 
 class CalculatorMain extends StatefulWidget {
   const CalculatorMain({super.key});
@@ -58,6 +59,18 @@ class _CalculatorMainState extends State<CalculatorMain> {
             },
             style: style,
             child: const Text('Momentum (Vector)'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return const AvgVeloDialog();
+                }
+              );
+            },
+            style: style,
+            child: const Text('Average Velocity (Vector)'),
           ),
           ElevatedButton(
             onPressed: () {
