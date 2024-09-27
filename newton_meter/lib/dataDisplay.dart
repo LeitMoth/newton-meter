@@ -17,23 +17,21 @@ class _ResultsDisplayState extends State<ResultsDisplay> {
     return Card(
         child: Column(children: [
       TextField(
-        decoration: const InputDecoration(labelText: 'Mass (kg)', hintText: "1.0"),
+        decoration:
+            const InputDecoration(labelText: 'Mass (kg)', hintText: "1.0"),
         keyboardType: TextInputType.number,
-        onChanged: (text) { 
+        onChanged: (text) {
           setState(() {
             mass = double.parse(text);
           });
         },
       ),
-
-      // Text('Average Velocity = $avgVelo'),
-      // Text('Net Force = $netForce'),
-      // Text('Average Momentum = $avgMoment'),
       Text('Mass = ${mass}kg'),
-      Text('Time = ${widget.results.acceleration.last.seconds.toStringAsPrecision(5)}s'),
-      // Text('Position Change = $posChange'),
-      // Text('Vector 3 = $vector3'),
-      // Text('Vector 4 = $vector4'),
+      Text('Time = ${widget.results.elapsed}s'),
+      Text('Average Velocity = ${widget.results.averageVelocity}m/s'),
+      Text('Average Momentum = ${widget.results.averageMomentum(mass)}kg m/s'),
+      Text('Net Force = ${widget.results.netForce(mass)}N'),
+      Text('Displacement = ${widget.results.displacement}m'),
     ]));
   }
 }
