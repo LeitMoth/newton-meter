@@ -31,7 +31,7 @@ void main() {
    // expect(find.text('1'), findsOneWidget);
   //});
   testWidgets('data is displayed properly', (WidgetTester tester) async{
-    await tester.pumpWidget(const MyGraph());
+    await tester.pumpWidget((const TextData()));
 
     expect(find.text('Average Velocity = 0.0'), findsOne);
     expect(find.text('Net Force = 1.0'), findsOne);
@@ -40,6 +40,22 @@ void main() {
     expect(find.text('Position Change = 4.0'), findsOne);
     expect(find.text('Vector 3 = 5.0'), findsOne);
     expect(find.text('Vector 4 = 6.0'), findsOne);
+  });
+
+  testWidgets('data starts to record', (WidgetTester tester) async{
+    await tester.pumpWidget((const TextData()));
+
+    await tester.tap(find.byIcon(Icons.start));
+
+    expect(find.text('Average Velocity = 1.00'), findsNothing);
+
+  });
+
+  testWidgets('data starts to record', (WidgetTester tester) async{
+    //await tester.pumpWidget((const LineChartWidget(<>)));
+
+
+
   });
 
 }

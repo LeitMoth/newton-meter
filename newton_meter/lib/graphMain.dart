@@ -1,13 +1,13 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-import 'package:fl_chart/fl_chart.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:newton_meter/Calculator/calculator_main.dart';
 import 'package:newton_meter/ChartData.dart';
 import 'package:newton_meter/dataDisplay.dart';
+import 'package:newton_meter/math/results.dart';
 
-
+import 'package:sensors_plus/sensors_plus.dart';
+import 'package:newton_meter/math/accel_math.dart';
 
 class MyGraph extends StatelessWidget {
   const MyGraph({super.key});
@@ -28,22 +28,64 @@ class MyGraph extends StatelessWidget {
 class MyGraphPage extends StatefulWidget {
   const MyGraphPage({super.key, required this.title});
 
-  List<DataPoint> get dataPoints{
-  final data = <double>[];
-  return data
-    .mapIndexed(
-      ((index, element) => DataPoint(x: index.toDouble(), y: element)))
-    .toList();
-}
-  
   final String title;
 
   @override
   State<MyGraphPage> createState() => _MyGraphPageState();
-
-  
 }
- class _MyGraphPageState extends State<MyGraphPage>{
+
+class _MyGraphPageState extends State<MyGraphPage> {
+  StreamSubscription<UserAccelerometerEvent>? userAccelSubscription;
+  List<Vec3Time> acceleration = [];
+  bool recording = false;
+  DateTime? recordStart;
+  NewtonResults recordResults = NewtonResults.build([Vec3Time(x: 0, y: 0, z: 0, seconds: 0)]);
+
+  void record() {
+    if (!recording) {
+      recording = true;
+      recordStart = null;
+    } else {
+      recording = false;
+      setState(() {
+        recordResults = NewtonResults.build(acceleration);
+      });
+      print(acceleration.last.x);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    userAccelSubscription = userAccelerometerEventStream(
+            samplingPeriod: const Duration(milliseconds: 20))
+        .listen((UserAccelerometerEvent event) {
+      if (recording && recordStart == null) {
+        recordStart = event.timestamp;
+        acceleration = [Vec3Time(x: 0, y: 0, z: 0, seconds: 0)];
+      }
+
+      if (recordStart case DateTime start) {
+        double elapsed =
+            event.timestamp.difference(start).inMicroseconds * 0.000001;
+        acceleration.add(
+            Vec3Time(x: event.x, y: event.y, z: event.z, seconds: elapsed));
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    userAccelSubscription?.cancel();
+    super.dispose();
+  }
+
+  List<DataPoint> toDataPoints(List<double> data) {
+    return data
+        .mapIndexed(
+            ((index, element) => DataPoint(x: index.toDouble(), y: element)))
+        .toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,23 +104,18 @@ class MyGraphPage extends StatefulWidget {
           )
         ]
       ),
-
       body: Center(
         child: SingleChildScrollView(
         child: Column(
           children: [
-          LineChartWidget(dataPoints),
-           const textData(),
+            LineChartWidget(toDataPoints(recordResults.magVelocity)),
+            ResultsDisplay(results: recordResults),
           ],
         ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: null,
-          tooltip: 'Start',
-          child: const Icon(Icons.start)),
-
+          onPressed: record, tooltip: 'Start', child: const Icon(Icons.stop_circle)),
     ); // This trailing comma makes auto-formatting nicer for build methods.
-    
   }
- }
+}

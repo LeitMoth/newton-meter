@@ -34,3 +34,11 @@ List<Vec3Time> integrate(List<Vec3Time> vs) {
 List<double> scalarize(List<Vec3Time> vs) {
   return vs.map((e) => sqrt(e.x * e.x + e.y * e.y + e.z * e.z)).toList();
 }
+
+double average(List<double> ds) {
+  var sum = 0.0;
+  for (double d in ds) {
+    sum += d;
+  }
+  return (1.0 / ds.length) * sum;
+}

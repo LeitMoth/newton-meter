@@ -1,96 +1,37 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
+import 'package:newton_meter/math/results.dart';
 
-
-class textData extends StatefulWidget {
-  const textData({super.key});
+class ResultsDisplay extends StatefulWidget {
+  const ResultsDisplay({required this.results, super.key});
+  final NewtonResults results;
 
   @override
-  _textDataState createState() => _textDataState();
-
-
+  State<ResultsDisplay> createState() => _ResultsDisplayState();
 }
-  
 
-class _textDataState extends State<textData> {
-  final nameController=TextEditingController();
-  double avgVelo = 0.00;
-  double netForce = 1.00;
-  double avgMoment = 2.00;
-  double time = 3.00;
-  double posChange = 4.00;
-  double vector3 = 5.00;
-  double vector4 = 6.00;
-
-  void _AverageVelocity() {
-  avgVelo = 1.00; //math
-  }
-
-  void _NetForce() {
-  netForce =  2.00; //math
-  }
-
-  void _AverageMomentum(){
-    avgMoment = 3.00;
-  }
-
-  void _Time(){
-    time = 4.00;
-  }
-
-  void _PositionChange(){
-    posChange = 5.00;
-  }
-
-  void _Vector3(){
-    vector3 = 6.00;
-  }
-
-  void _Vector4(){
-    vector4 = 7.00;
-  }
-
-  void _StartRecording(){
-
-  }
-
-
-
+class _ResultsDisplayState extends State<ResultsDisplay> {
+  double mass = 1.0;
 
   @override
   Widget build(BuildContext context) {
-        return Card(
-          child: Column(
-            children: [
-            TextField(
-              decoration: InputDecoration(labelText: 'Mass'),
-              keyboardType: TextInputType.number,
-            ),
-            Text(
-              'Average Velocity = $avgVelo'),
-              Text(
-              'Net Force = $netForce'),
-              Text(
-              'Average Momentum = $avgMoment'),
-              Text(
-              'Time = $time'),
-              Text(
-              'Position Change = $posChange'),
-              Text(
-              'Vector 3 = $vector3'),
-              Text(
-              'Vector 4 = $vector4'),
-            ]
-          )
-        );
-        
-
-    
+    return Card(
+        child: Column(children: [
+      TextField(
+        decoration:
+            const InputDecoration(labelText: 'Mass (kg)', hintText: "1.0"),
+        keyboardType: TextInputType.number,
+        onChanged: (text) {
+          setState(() {
+            mass = double.parse(text);
+          });
+        },
+      ),
+      Text('Mass = ${mass}kg'),
+      Text('Time = ${widget.results.elapsed}s'),
+      Text('Average Velocity = ${widget.results.averageVelocity}m/s'),
+      Text('Average Momentum = ${widget.results.averageMomentum(mass)}kg m/s'),
+      Text('Net Force = ${widget.results.netForce(mass)}N'),
+      Text('Displacement = ${widget.results.displacement}m'),
+    ]));
   }
 }
-
-
-
-
-//TextField to enter mass; average velocity (Vector); net Force (Vector); average momentum; time; position change (Vector), magnitudes for all the vectors.
