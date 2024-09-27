@@ -26,6 +26,7 @@ class _GravitationalForceDialogState extends State<GravitationalForceDialog> {
 
   void _calculateGravForce() {
     setState(() {
+
       posChange = pos2 - pos1;
       posChangeMag = posChange.length;
       posUnitVec = posChange.normalized();

@@ -35,6 +35,7 @@ class _CalculatorMainState extends State<CalculatorMain> {
         ],
       ),
       body: ListView(
+        key: Key('list'),
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         children: <Widget> [
           ElevatedButton(
@@ -59,6 +60,7 @@ class _CalculatorMainState extends State<CalculatorMain> {
                 }
               );
             },
+            key: const Key('fv'),
             style: style,
             child: const Text('Force (Vector)'),
           ),
