@@ -14,12 +14,10 @@ class SensorTestPage extends StatefulWidget {
 class _SensorTestPageState extends State<SensorTestPage> {
   StreamSubscription<UserAccelerometerEvent>? userAccelSubscription;
 
-  bool thing = false;
-  // DateTime? lastTime;
   List<Vec3Time> acceleration = [];
 
   double px = 0, py = 0, pz = 0;
-  double vx = 0, vy = 0, vz = 0;
+  // double vx = 0, vy = 0, vz = 0;
 
   double maxa = 0;
 
@@ -66,9 +64,9 @@ class _SensorTestPageState extends State<SensorTestPage> {
       py = position.last.y;
       pz = position.last.z;
 
-      vx = velocity.last.x;
-      vy = velocity.last.y;
-      vz = velocity.last.z;
+      // vx = velocity.last.x;
+      // vy = velocity.last.y;
+      // vz = velocity.last.z;
     }
 
     acceleration.clear();
@@ -96,9 +94,9 @@ class _SensorTestPageState extends State<SensorTestPage> {
         Text(py.toStringAsPrecision(5)),
         Text(pz.toStringAsPrecision(5)),
         Text("Max Accel: ${maxa.toStringAsPrecision(3)}"),
-        Text(vx.toStringAsPrecision(5)),
-        Text(vy.toStringAsPrecision(5)),
-        Text(vz.toStringAsPrecision(5)),
+        // Text(vx.toStringAsPrecision(5)),
+        // Text(vy.toStringAsPrecision(5)),
+        // Text(vz.toStringAsPrecision(5)),
       ]),
     );
   }
@@ -121,12 +119,12 @@ class _SensorTestPageState extends State<SensorTestPage> {
         acceleration.add(
             Vec3Time(x: event.x, y: event.y, z: event.z, seconds: elapsed));
         // print("Added $elapsed");
-        setState(() {
-                vx = event.x;
-                vy = event.y;
-                vz = event.z;
-                maxa = elapsed;
-        });
+        // setState(() {
+        //         vx = event.x;
+        //         vy = event.y;
+        //         vz = event.z;
+        //         maxa = elapsed;
+        // });
       }
     });
   }
