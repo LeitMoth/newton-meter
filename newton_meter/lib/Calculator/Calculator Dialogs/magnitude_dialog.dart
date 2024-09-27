@@ -1,28 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math.dart';
 
-typedef MomentumCallback = Function(Vector3 momentumFinal);
-
-class MomentumDialog extends StatefulWidget {
-  const MomentumDialog({
+class MagnitudeDialog extends StatefulWidget {
+  const MagnitudeDialog({
     super.key,
   });
 
-  //final MomentumCallback onCalculationsComplete;
-
   @override
-  State<MomentumDialog> createState() => _MomentumDialogState();
+  State<MagnitudeDialog> createState() => _MagnitudeDialogState();
 }
 
-class _MomentumDialogState extends State<MomentumDialog> {
-  Vector3 velocity = Vector3.zero();
-  double mass = 0;
-  Vector3 momentum = Vector3.zero();
+class _MagnitudeDialogState extends State<MagnitudeDialog> {
+  Vector3 vector = Vector3.zero();
+  double magnitude = 0;
 
 
   void _calculateMomentum() {
     setState(() {
-      momentum = velocity * mass;
+      magnitude = vector.length;
     });
   }
 
@@ -33,43 +28,34 @@ class _MomentumDialogState extends State<MomentumDialog> {
     ButtonStyle cancelStyle = ElevatedButton.styleFrom( textStyle: TextStyle(fontSize: 20, color: Theme.of(context).colorScheme.secondary),
     backgroundColor: Theme.of(context).colorScheme.tertiaryFixed);
     return AlertDialog(
-      title: const Text('Momentum in Vector Form'),
+      title: const Text('Magnitude of any Vector'),
       content:
         Column(
           children: <Widget>[
-            TextField( // Velocity X Input Field
+            TextField( // Vector X Input Field
               keyboardType: TextInputType.number,
-              decoration: const InputDecoration(labelText: 'Vx ='),
+              decoration: const InputDecoration(labelText: 'Vector X ='),
               onChanged: (value) {
                 setState(() {
-                  velocity.x = double.parse(value);
+                  vector.x = double.parse(value);
                 });
               }
             ),
-            TextField( // Velocity Y Input Field
+            TextField( // Vector Y Input Field
               keyboardType: TextInputType.number,
-              decoration: const InputDecoration(labelText: 'Vy ='),
+              decoration: const InputDecoration(labelText: 'Vector Y ='),
               onChanged: (value) {
                 setState(() {
-                  velocity.y = double.parse(value);
+                  vector.y = double.parse(value);
                 });
               }
             ),
-            TextField( // Velocity z Input
+            TextField( // Vector z Input
               keyboardType: TextInputType.number,
-              decoration: const InputDecoration(labelText: 'Vz ='),
+              decoration: const InputDecoration(labelText: 'Vector Z ='),
               onChanged: (value) {
                 setState(() {
-                  velocity.z = double.parse(value);
-                });
-              }
-            ),
-            TextField( // Mass Input Field
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(labelText: 'Mass ='),
-              onChanged: (value) {
-                setState(() {
-                  mass = double.parse(value);
+                  vector.z = double.parse(value);
                 });
               }
             ),
@@ -78,7 +64,7 @@ class _MomentumDialogState extends State<MomentumDialog> {
               style: calcStyle,
               child: const Text('Calculate'),
             ),
-            Text('Momentum = $momentum'),
+            Text('Magnitude = $magnitude'),
           ]
         ),
 
