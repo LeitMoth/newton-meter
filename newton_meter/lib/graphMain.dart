@@ -64,11 +64,13 @@ class MyGraphPage extends StatefulWidget {
       ),
 
       body: Center(
+        child: SingleChildScrollView(
         child: Column(
           children: [
-           const LineChartWidget(<DataPoint>[]),
+          LineChartWidget(dataPoints),
            const textData(),
           ],
+        ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
