@@ -52,6 +52,7 @@ class MyGraphPage extends StatefulWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text("Newton-Meter"),
+        titleTextStyle: TextStyle(color: Theme.of(context).colorScheme.inversePrimary, fontSize: 30),
         actions: [
           IconButton(
             icon: switchIcon,
