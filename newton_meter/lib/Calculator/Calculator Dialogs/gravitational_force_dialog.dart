@@ -11,9 +11,6 @@ class GravitationalForceDialog extends StatefulWidget {
 }
 
 class _GravitationalForceDialogState extends State<GravitationalForceDialog> {
-  Vector3 velocity = Vector3.zero();
-  double mass = 0;
-  Vector3 momentum = Vector3.zero();
   
   Vector3 gravForce = Vector3.zero();
   double gravConst = 6.7e-11;
