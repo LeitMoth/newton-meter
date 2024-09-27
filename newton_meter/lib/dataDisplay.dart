@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+
 
 class textData extends StatefulWidget {
   const textData({Key? key}) : super(key: key);
@@ -48,6 +51,10 @@ class _textDataState extends State<textData> {
     vector4 = 7.00;
   }
 
+  void _StartRecording(){
+
+  }
+
 
 
 
@@ -78,8 +85,11 @@ class _textDataState extends State<textData> {
               'Vector 4 = $vector4'),
             ]
           )
-        )
-        
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: _StartRecording,
+          tooltip: 'Start',
+          child: const Icon(Icons.start)),
       )
     );
   }
