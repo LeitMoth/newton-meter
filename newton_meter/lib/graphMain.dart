@@ -27,14 +27,6 @@ class MyGraph extends StatelessWidget {
 class MyGraphPage extends StatefulWidget {
   const MyGraphPage({super.key, required this.title});
 
-  List<DataPoint> get dataPoints {
-    final data = <double>[];
-    return data
-        .mapIndexed(
-            ((index, element) => DataPoint(x: index.toDouble(), y: element)))
-        .toList();
-  }
-
   final String title;
 
   @override
@@ -54,7 +46,9 @@ class _MyGraphPageState extends State<MyGraphPage> {
       recordStart = null;
     } else {
       recording = false;
-      recordResults = NewtonResults.build(acceleration);
+      setState(() {
+        recordResults = NewtonResults.build(acceleration);
+      });
       print(acceleration.last.x);
     }
   }
@@ -85,17 +79,29 @@ class _MyGraphPageState extends State<MyGraphPage> {
     super.dispose();
   }
 
+  List<DataPoint> toDataPoints(List<double> data) {
+    return data
+        .mapIndexed(
+            ((index, element) => DataPoint(x: index.toDouble(), y: element)))
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
+    List<DataPoint> dataPoints = [];
+    if (recordResults case NewtonResults res) {
+      dataPoints = toDataPoints(res.magVelocity);
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Newton-Meter"),
+        title: const Text("Newton-Meter"),
       ),
       body: Center(
         child: Column(
           children: [
-            const LineChartWidget(<DataPoint>[]),
+            LineChartWidget(dataPoints),
             const textData(),
           ],
         ),
