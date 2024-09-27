@@ -46,6 +46,7 @@ class _CalculatorMainState extends State<CalculatorMain> {
                 }
               );
             },
+            key: const Key('gfv'),
             style: style,
             child: const Text('Gravitational Force (Vector)'),
           ),
@@ -70,6 +71,7 @@ class _CalculatorMainState extends State<CalculatorMain> {
                 }
               );
             },
+            key: const Key('mv'),
             style: style,
             child: const Text('Momentum (Vector)'),
           ),
@@ -82,6 +84,7 @@ class _CalculatorMainState extends State<CalculatorMain> {
                 }
               );
             },
+            key: const Key('avv'),
             style: style,
             child: const Text('Average Velocity (Vector)'),
           ),
@@ -94,6 +97,7 @@ class _CalculatorMainState extends State<CalculatorMain> {
                 }
               );
             },
+            key: const Key('mag'),
             style: style,
             child: const Text('Magnitude (Any Vector)'),
           ),
@@ -106,6 +110,7 @@ class _CalculatorMainState extends State<CalculatorMain> {
                 }
               );
             },
+            key: const Key('pu1'),
             style: style,
             child: const Text('Position Update (Vector - Using Pos, Time, and avg Velo)'),
           ),
@@ -118,6 +123,7 @@ class _CalculatorMainState extends State<CalculatorMain> {
                 }
               );
             },
+            key: const Key('pu2'),
             style: style,
             child: const Text('Position Update (Vector - Using Constant Force)'),
           ),

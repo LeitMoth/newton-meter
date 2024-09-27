@@ -43,6 +43,7 @@ class _AvgVeloDialogState extends State<AvgVeloDialog> {
           children: <Widget>[
             TextField( // ri X Input Field
               keyboardType: TextInputType.number,
+              key: const Key('rix'),
               decoration: const InputDecoration(labelText: 'ri x ='),
               onChanged: (value) {
                 setState(() {
@@ -52,6 +53,7 @@ class _AvgVeloDialogState extends State<AvgVeloDialog> {
             ),
             TextField( // ri Y Input Field
               keyboardType: TextInputType.number,
+              key: const Key('riy'),
               decoration: const InputDecoration(labelText: 'ri y ='),
               onChanged: (value) {
                 setState(() {
@@ -61,6 +63,7 @@ class _AvgVeloDialogState extends State<AvgVeloDialog> {
             ),
             TextField( // ri z Input
               keyboardType: TextInputType.number,
+              key: const Key('riz'),
               decoration: const InputDecoration(labelText: 'ri z ='),
               onChanged: (value) {
                 setState(() {
@@ -70,6 +73,7 @@ class _AvgVeloDialogState extends State<AvgVeloDialog> {
             ),
             TextField( // rf X Input Field
               keyboardType: TextInputType.number,
+              key: const Key('rfx'),
               decoration: const InputDecoration(labelText: 'rf x ='),
               onChanged: (value) {
                 setState(() {
@@ -79,6 +83,7 @@ class _AvgVeloDialogState extends State<AvgVeloDialog> {
             ),
             TextField( // rf Y Input Field
               keyboardType: TextInputType.number,
+              key: const Key('rfy'),
               decoration: const InputDecoration(labelText: 'rf y ='),
               onChanged: (value) {
                 setState(() {
@@ -88,6 +93,7 @@ class _AvgVeloDialogState extends State<AvgVeloDialog> {
             ),
             TextField( // rf z Input
               keyboardType: TextInputType.number,
+              key: const Key('rfz'),
               decoration: const InputDecoration(labelText: 'rf z ='),
               onChanged: (value) {
                 setState(() {
@@ -97,6 +103,7 @@ class _AvgVeloDialogState extends State<AvgVeloDialog> {
             ),
             TextField( // dt Input Field
               keyboardType: TextInputType.number,
+              key: const Key('t'),
               decoration: const InputDecoration(labelText: 'Time ='),
               onChanged: (value) {
                 setState(() {
@@ -106,16 +113,18 @@ class _AvgVeloDialogState extends State<AvgVeloDialog> {
             ),
             ElevatedButton(
               onPressed: _calculateMomentum,
+              key: const Key('calc'),
               style: calcStyle,
               child: const Text('Calculate'),
             ),
-            Text('Average Velocity = $vavg'),
+            Text('Average Velocity = $vavg', key: const Key('sol')),
           ]
         ),
 
         actions: <Widget> [
           ElevatedButton(
             style: cancelStyle,
+            key: const Key('canc'),
             child: const Text('Close'),
             onPressed: () {
               setState(() {

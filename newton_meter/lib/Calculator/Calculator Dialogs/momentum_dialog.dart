@@ -39,6 +39,7 @@ class _MomentumDialogState extends State<MomentumDialog> {
           children: <Widget>[
             TextField( // Velocity X Input Field
               keyboardType: TextInputType.number,
+              key: const Key('vx'),
               decoration: const InputDecoration(labelText: 'Vx ='),
               onChanged: (value) {
                 setState(() {
@@ -48,6 +49,7 @@ class _MomentumDialogState extends State<MomentumDialog> {
             ),
             TextField( // Velocity Y Input Field
               keyboardType: TextInputType.number,
+              key: const Key('vy'),
               decoration: const InputDecoration(labelText: 'Vy ='),
               onChanged: (value) {
                 setState(() {
@@ -57,6 +59,7 @@ class _MomentumDialogState extends State<MomentumDialog> {
             ),
             TextField( // Velocity z Input
               keyboardType: TextInputType.number,
+              key: const Key('vz'),
               decoration: const InputDecoration(labelText: 'Vz ='),
               onChanged: (value) {
                 setState(() {
@@ -66,6 +69,7 @@ class _MomentumDialogState extends State<MomentumDialog> {
             ),
             TextField( // Mass Input Field
               keyboardType: TextInputType.number,
+              key: const Key('m'),
               decoration: const InputDecoration(labelText: 'Mass ='),
               onChanged: (value) {
                 setState(() {
@@ -76,15 +80,17 @@ class _MomentumDialogState extends State<MomentumDialog> {
             ElevatedButton(
               onPressed: _calculateMomentum,
               style: calcStyle,
+              key: const Key('calc'),
               child: const Text('Calculate'),
             ),
-            Text('Momentum = $momentum'),
+            Text('Momentum = $momentum', key: const Key('sol')),
           ]
         ),
 
         actions: <Widget> [
           ElevatedButton(
             style: cancelStyle,
+            key: Key('canc'),
             child: const Text('Close'),
             onPressed: () {
               setState(() {

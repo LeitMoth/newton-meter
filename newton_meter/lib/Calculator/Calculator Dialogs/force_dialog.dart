@@ -38,6 +38,7 @@ class _ForceDialogState extends State<ForceDialog> {
         Column(
           children: <Widget>[
             TextField( // Acceleration X Input Field
+              key: const Key('ax'),
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(labelText: 'Accel x ='),
               onChanged: (value) {
@@ -48,6 +49,7 @@ class _ForceDialogState extends State<ForceDialog> {
             ),
             TextField( // Acceleration Y Input Field
               keyboardType: TextInputType.number,
+              key: const Key('ay'),
               decoration: const InputDecoration(labelText: 'Accel y ='),
               onChanged: (value) {
                 setState(() {
@@ -57,6 +59,7 @@ class _ForceDialogState extends State<ForceDialog> {
             ),
             TextField( // Acceleration z Input
               keyboardType: TextInputType.number,
+              key: const Key('az'),
               decoration: const InputDecoration(labelText: 'Accel z ='),
               onChanged: (value) {
                 setState(() {
@@ -66,6 +69,7 @@ class _ForceDialogState extends State<ForceDialog> {
             ),
             TextField( // Mass Input Field
               keyboardType: TextInputType.number,
+              key: const Key('m'),
               decoration: const InputDecoration(labelText: 'Mass ='),
               onChanged: (value) {
                 setState(() {
@@ -75,16 +79,18 @@ class _ForceDialogState extends State<ForceDialog> {
             ),
             ElevatedButton(
               onPressed: _calculateMomentum,
+              key: const Key('calc'),
               style: calcStyle,
               child: const Text('Calculate'),
             ),
-            Text('Force = $force'),
+            Text('Force = $force', key: const Key('sol')),
           ]
         ),
 
         actions: <Widget> [
           ElevatedButton(
             style: cancelStyle,
+            key: const Key('canc'),
             child: const Text('Close'),
             onPressed: () {
               setState(() {

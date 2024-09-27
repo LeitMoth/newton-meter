@@ -34,6 +34,7 @@ class _MagnitudeDialogState extends State<MagnitudeDialog> {
           children: <Widget>[
             TextField( // Vector X Input Field
               keyboardType: TextInputType.number,
+              key: Key('vx'),
               decoration: const InputDecoration(labelText: 'Vector X ='),
               onChanged: (value) {
                 setState(() {
@@ -43,6 +44,7 @@ class _MagnitudeDialogState extends State<MagnitudeDialog> {
             ),
             TextField( // Vector Y Input Field
               keyboardType: TextInputType.number,
+              key: Key('vy'),
               decoration: const InputDecoration(labelText: 'Vector Y ='),
               onChanged: (value) {
                 setState(() {
@@ -52,6 +54,7 @@ class _MagnitudeDialogState extends State<MagnitudeDialog> {
             ),
             TextField( // Vector z Input
               keyboardType: TextInputType.number,
+              key: Key('vz'),
               decoration: const InputDecoration(labelText: 'Vector Z ='),
               onChanged: (value) {
                 setState(() {
@@ -62,15 +65,17 @@ class _MagnitudeDialogState extends State<MagnitudeDialog> {
             ElevatedButton(
               onPressed: _calculateMomentum,
               style: calcStyle,
+              key: const Key('calc'),
               child: const Text('Calculate'),
             ),
-            Text('Magnitude = $magnitude'),
+            Text('Magnitude = $magnitude', key: const Key('sol')),
           ]
         ),
 
         actions: <Widget> [
           ElevatedButton(
             style: cancelStyle,
+            key: const Key('canc'),
             child: const Text('Close'),
             onPressed: () {
               setState(() {
