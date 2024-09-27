@@ -31,48 +31,35 @@ void main() {
     expect(find.text('Force = [1.0,0.0,0.0]'), findsOneWidget);
   });
 
-  testWidgets('grav force dialog gives the right answer', (WidgetTester tester) async {
-    await tester.pumpWidget(const MaterialApp(home: CalculatorMain()));
+  testWidgets('magnitude dialog gives the right answer', (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home:CalculatorMain()));
 
-    await tester.tap(find.byKey(const Key('gfv')));
+    await tester.tap(find.byKey(const Key('mag')));
     await tester.pump();
-    await tester.enterText(find.byKey(const Key('p2x')), '1');
+    await tester.enterText(find.byKey(const Key('vx')), '2');
     await tester.pump();
-    await tester.enterText(find.byKey(const Key('m1')), '2');
+    await tester.enterText(find.byKey(const Key('vy')), '2');
     await tester.pump();
-    await tester.enterText(find.byKey(const Key('m2')), '1');
+    await tester.enterText(find.byKey(const Key('vz')), '1');
     await tester.pump();
     await tester.tap(find.byKey(const Key('calc')));
     await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    await tester.pump();
-    
 
-    //expect(find.text('Gravitational Force = [0.0,0.0,0.0]'), findsOneWidget);
-    expect(find.text('Gravitational Force = [-1.340000055360946e-10,-0.0,-0.0]'),findsOneWidget);
+    expect(find.text('Magnitude = 3.0'), findsOneWidget);
+  });
+
+  testWidgets('momentum dialog gives the right answer', (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home: CalculatorMain()));
+
+    await tester.tap(find.byKey(const Key('mv')));
+    await tester.pump();
+    await tester.enterText(find.byKey(const Key('vx')), '2');
+    await tester.pump();
+    await tester.enterText(find.byKey(const Key('m')), '5');
+    await tester.pump();
+    await tester.tap(find.byKey(const Key('calc')));
+    await tester.pump();
+
+    expect(find.text('Momentum = [10.0,0.0,0.0]'), findsOneWidget);
   });
 }
