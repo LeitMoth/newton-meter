@@ -19,6 +19,7 @@ class _SensorTestPageState extends State<SensorTestPage> {
   List<Vec3Time> acceleration = [];
 
   double px = 0, py = 0, pz = 0;
+  double vx = 0, vy = 0, vz = 0;
 
   double maxa = 0;
 
@@ -30,6 +31,7 @@ class _SensorTestPageState extends State<SensorTestPage> {
     if (!running) {
       running = true;
       recordStart = null;
+      maxa = 0;
     } else {
       running = false;
       recordStart = null;
@@ -63,6 +65,10 @@ class _SensorTestPageState extends State<SensorTestPage> {
       px = position.last.x;
       py = position.last.y;
       pz = position.last.z;
+
+      vx = velocity.last.x;
+      vy = velocity.last.y;
+      vz = velocity.last.z;
     }
 
     acceleration.clear();
@@ -74,10 +80,15 @@ class _SensorTestPageState extends State<SensorTestPage> {
 
   @override
   Widget build(BuildContext context) {
+    var text = "Press Me";
+    if (running) {
+      text = "Recording...";
+    }
     return MaterialApp(
       home: Column(children: [
+        Text("Padding"),
         FloatingActionButton(
-            child: const Text("hi"),
+            child: Text(text),
             onPressed: () {
               setState(record);
             }),
@@ -85,6 +96,9 @@ class _SensorTestPageState extends State<SensorTestPage> {
         Text(py.toStringAsPrecision(5)),
         Text(pz.toStringAsPrecision(5)),
         Text("Max Accel: ${maxa.toStringAsPrecision(3)}"),
+        Text(vx.toStringAsPrecision(5)),
+        Text(vy.toStringAsPrecision(5)),
+        Text(vz.toStringAsPrecision(5)),
       ]),
     );
   }

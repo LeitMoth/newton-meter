@@ -16,7 +16,11 @@ For our purposes, we always want the first Vec3Time
 to be the zero vector
 */
 List<Vec3Time> integrate(List<Vec3Time> vs) {
-  List<Vec3Time> integrated = List.of(vs);
+  List<Vec3Time> integrated = [];
+  for (var v in vs) {
+    integrated.add(Vec3Time(x: v.x, y: v.y, z: v.z, seconds: v.seconds));
+  }
+  
 
   for (int i = 1; i < vs.length; ++i) {
     var dt = vs[i].seconds - vs[i - 1].seconds;

@@ -2,6 +2,18 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:newton_meter/math/accel_math.dart';
 
 void main() {
+  test("Integration doesn't overwrite original list", () {
+    List<Vec3Time> vs = [
+      Vec3Time(x: 0, y: 0, z: 0, seconds: 0),
+      Vec3Time(x: 1, y: 2, z: 3, seconds: 1),
+      Vec3Time(x: 5, y: 1, z: 7, seconds: 2),
+      Vec3Time(x: 8, y: 8, z: 8, seconds: 4),
+    ];
+
+    var intVs = integrate(vs);
+    expect(vs, isNot(intVs));
+  });
+    
   test("Basic integration of vectors", () {
     List<Vec3Time> vs = [
       Vec3Time(x: 0, y: 0, z: 0, seconds: 0),
@@ -76,5 +88,20 @@ void main() {
     expect(intVs[5].y, 90);
 
     expect(intVs.last.y, 90);
+  });
+
+  test("Scalarize calculates magnitudes", () {
+    List<Vec3Time> vs = [
+      Vec3Time(x: 0, y: 0, z: 0, seconds: 0),
+      Vec3Time(x: 0, y: 6, z: 0, seconds: 1),
+      Vec3Time(x: 0, y: 6, z: 0, seconds: 2),
+      Vec3Time(x: 0, y: 6, z: 0, seconds: 3),
+      Vec3Time(x: 0, y: 6, z: 0, seconds: 4),
+      Vec3Time(x: 0, y: 6, z: 0, seconds: 5),
+    ];
+
+    var ss = scalarize(vs);
+
+    expect(ss, [0,6,6,6,6,6]);
   });
 }
