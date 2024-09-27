@@ -44,7 +44,7 @@ class _GravitationalForceDialogState extends State<GravitationalForceDialog> {
     backgroundColor: Theme.of(context).colorScheme.tertiaryFixed);
     return AlertDialog(
       scrollable: true,
-      title: const Text('Momentum in Vector Form'),
+      title: const Text('Gravitational Force in Vector Form'),
       content:
         Column(
           children: <Widget>[

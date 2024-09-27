@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:newton_meter/Calculator/Calculator%20Dialogs/gravitational_force_dialog.dart';
 import 'package:newton_meter/Calculator/Calculator%20Dialogs/magnitude_dialog.dart';
 import 'package:newton_meter/Calculator/Calculator%20Dialogs/momentum_dialog.dart';
+import 'package:newton_meter/Calculator/Calculator%20Dialogs/pos_update_dialog.dart';
 
 class CalculatorMain extends StatefulWidget {
   const CalculatorMain({super.key});
@@ -62,7 +63,14 @@ class _CalculatorMainState extends State<CalculatorMain> {
             child: const Text('Magnitude (Any Vector)'),
           ),
           ElevatedButton(
-            onPressed: null,
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return const PosUpdateDialog();
+                }
+              );
+            },
             style: style,
             child: const Text('Position Update (Vector)'),
           ),
