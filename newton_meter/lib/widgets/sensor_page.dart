@@ -107,7 +107,8 @@ class _SensorTestPageState extends State<SensorTestPage> {
   void initState() {
     super.initState();
     userAccelSubscription =
-        userAccelerometerEventStream().listen((UserAccelerometerEvent event) {
+        userAccelerometerEventStream(samplingPeriod: const Duration(milliseconds: 20)).listen((UserAccelerometerEvent event) {
+
       if (running && recordStart == null) {
         recordStart = event.timestamp;
         acceleration = [Vec3Time(x: 0, y: 0, z: 0, seconds: 0)];
@@ -120,6 +121,12 @@ class _SensorTestPageState extends State<SensorTestPage> {
         acceleration.add(
             Vec3Time(x: event.x, y: event.y, z: event.z, seconds: elapsed));
         // print("Added $elapsed");
+        setState(() {
+                vx = event.x;
+                vy = event.y;
+                vz = event.z;
+                maxa = elapsed;
+        });
       }
     });
   }

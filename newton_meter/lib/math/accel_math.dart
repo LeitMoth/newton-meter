@@ -20,10 +20,9 @@ List<Vec3Time> integrate(List<Vec3Time> vs) {
   for (var v in vs) {
     integrated.add(Vec3Time(x: v.x, y: v.y, z: v.z, seconds: v.seconds));
   }
-  
 
   for (int i = 1; i < vs.length; ++i) {
-    var dt = vs[i].seconds - vs[i - 1].seconds;
+    var dt = integrated[i].seconds - integrated[i - 1].seconds;
     integrated[i].x = integrated[i - 1].x + integrated[i].x * dt;
     integrated[i].y = integrated[i - 1].y + integrated[i].y * dt;
     integrated[i].z = integrated[i - 1].z + integrated[i].z * dt;
