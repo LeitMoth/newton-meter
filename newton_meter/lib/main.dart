@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:newton_meter/graphMain.dart';
 import 'package:newton_meter/Calculator/calculator_main.dart';
 
-
 void main() {
   runApp(const MyGraph());
 }
@@ -16,16 +15,16 @@ class MyApp extends StatelessWidget {
     // return const MyGraph();
     return MaterialApp(
       title: 'Newton-Meter',
-      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.green)),
-      home: const CalculatorMain(), 
-      );
-    
+      theme:
+          ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.green)),
+      home: const CalculatorMain(),
+    );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-  
+
   final String title;
 
   @override
@@ -55,7 +54,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Column(
-
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(

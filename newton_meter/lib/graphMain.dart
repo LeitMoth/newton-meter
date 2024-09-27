@@ -6,8 +6,6 @@ import 'package:collection/collection.dart';
 import 'package:newton_meter/ChartData.dart';
 import 'package:newton_meter/dataDisplay.dart';
 
-
-
 class MyGraph extends StatelessWidget {
   const MyGraph({super.key});
 
@@ -27,23 +25,21 @@ class MyGraph extends StatelessWidget {
 class MyGraphPage extends StatefulWidget {
   const MyGraphPage({super.key, required this.title});
 
-  List<DataPoint> get dataPoints{
-  final data = <double>[];
-  return data
-    .mapIndexed(
-      ((index, element) => DataPoint(x: index.toDouble(), y: element)))
-    .toList();
-}
-  
+  List<DataPoint> get dataPoints {
+    final data = <double>[];
+    return data
+        .mapIndexed(
+            ((index, element) => DataPoint(x: index.toDouble(), y: element)))
+        .toList();
+  }
+
   final String title;
 
   @override
   State<MyGraphPage> createState() => _MyGraphPageState();
-
-  
 }
- class _MyGraphPageState extends State<MyGraphPage>{
 
+class _MyGraphPageState extends State<MyGraphPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,21 +47,16 @@ class MyGraphPage extends StatefulWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text("Newton-Meter"),
       ),
-
       body: Center(
         child: Column(
           children: [
-           const LineChartWidget(<DataPoint>[]),
-           const textData(),
+            const LineChartWidget(<DataPoint>[]),
+            const textData(),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: null,
-          tooltip: 'Start',
-          child: const Icon(Icons.start)),
-
+          onPressed: null, tooltip: 'Start', child: const Icon(Icons.start)),
     ); // This trailing comma makes auto-formatting nicer for build methods.
-    
   }
- }
+}
