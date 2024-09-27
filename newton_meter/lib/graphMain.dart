@@ -3,6 +3,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
+import 'package:newton_meter/Calculator/calculator_main.dart';
 import 'package:newton_meter/ChartData.dart';
 import 'package:newton_meter/dataDisplay.dart';
 
@@ -16,7 +17,7 @@ class MyGraph extends StatelessWidget {
     return MaterialApp(
       title: 'Newton Meter',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
       home: const MyGraphPage(title: 'Newton Meter Home Page'),
@@ -46,10 +47,20 @@ class MyGraphPage extends StatefulWidget {
 
   @override
   Widget build(BuildContext context) {
+    Icon switchIcon = Icon(Icons.switch_access_shortcut, color: Theme.of(context).colorScheme.inversePrimary);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text("Newton-Meter"),
+        titleTextStyle: TextStyle(color: Theme.of(context).colorScheme.inversePrimary, fontSize: 30),
+        actions: [
+          IconButton(
+            icon: switchIcon,
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (builder) => CalculatorMain()));
+            }
+          )
+        ]
       ),
 
       body: Center(

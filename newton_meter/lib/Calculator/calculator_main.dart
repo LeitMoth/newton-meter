@@ -21,18 +21,11 @@ class _CalculatorMainState extends State<CalculatorMain> {
   @override
   Widget build(BuildContext context) {
     ButtonStyle style = ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20), backgroundColor: Theme.of(context).colorScheme.inversePrimary);
-    Icon switchIcon = Icon(Icons.switch_access_shortcut, color: Theme.of(context).colorScheme.inversePrimary);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Calculator'),
         titleTextStyle: TextStyle(color: Theme.of(context).colorScheme.inversePrimary, fontSize: 30),
         backgroundColor: Theme.of(context).colorScheme.primary,
-        actions: <Widget>[
-          IconButton(
-            onPressed: null,
-            icon: switchIcon,
-          )
-        ],
       ),
       body: ListView(
         key: Key('list'),
