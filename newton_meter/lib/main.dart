@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newton_meter/graphMain.dart';
 import 'package:newton_meter/Calculator/calculator_main.dart';
-import 'package:newton_meter/widgets/sensor_page.dart';
 
 
 void main() {

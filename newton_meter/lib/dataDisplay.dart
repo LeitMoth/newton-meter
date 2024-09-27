@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 
 class textData extends StatefulWidget {
-  const textData({Key? key}) : super(key: key);
+  const textData({super.key});
 
   @override
   _textDataState createState() => _textDataState();

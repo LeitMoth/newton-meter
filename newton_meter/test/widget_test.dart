@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:newton_meter/main.dart';
-import 'package:newton_meter/ChartData.dart';
 import 'package:newton_meter/dataDisplay.dart';
 
 void main() {
