@@ -32,7 +32,6 @@ class _SensorTestPageState extends State<SensorTestPage> {
       maxa = 0;
     } else {
       running = false;
-      recordStart = null;
       finishRecording();
     }
   }
